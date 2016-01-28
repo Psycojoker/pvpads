@@ -53,7 +53,10 @@ class Meeting(models.Model):
     def update_and_render_content(self):
         try:
             self.content = urlopen(os.path.join(self.url, "export/txt")).read()
-        except Exception:
+        except Exception as e:
+            import traceback
+            traceback.print_exc(file=sys.stdout)
+            print("Exception: %s" % e)
             print("Error: get fetch the content of %s" % self.url)
             return
 
