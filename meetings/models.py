@@ -28,6 +28,8 @@ class Orga(models.Model):
 
 
 class Meeting(models.Model):
+    orga = models.ForeignKey(Orga)
+
     title = models.CharField(max_length=255, null=True, blank=True)
     url = models.URLField()
     meeting_date_time = models.DateTimeField()
