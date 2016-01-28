@@ -46,3 +46,6 @@ class Meeting(models.Model):
     html = models.TextField(editable=False, null=True, blank=True)
 
     last_modification = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-date"]
