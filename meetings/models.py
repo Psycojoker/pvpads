@@ -68,6 +68,9 @@ class Meeting(models.Model):
 
         return super(Meeting, self).save(*args, **kwargs)
 
+    def __unicode__(self):
+        return u"%s - %s" % (self.title, self.url)
+
     class Meta:
         ordering = ["-date"]
         unique_together = (('url', 'orga'))
