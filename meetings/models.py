@@ -1,11 +1,12 @@
 import os
 import sys
+import bleach
 
 from urllib2 import urlopen
 
 from django.db import models
 
-from .format import FORMATS, FORMATTERS
+from .format import FORMATS, FORMATTERS, ALLOWED_TAGS
 
 
 class Orga(models.Model):
@@ -67,7 +68,7 @@ class Meeting(models.Model):
 
     def render_content(self):
         try:
-            self.html = FORMATTERS[self.format][1](self)
+            self.html = bleach.clean(FORMATTERS[self.format][1](self), tags=ALLOWED_TAGS)
         except Exception as e:
             import traceback
             traceback.print_exc(file=sys.stdout)

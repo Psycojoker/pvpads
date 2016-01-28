@@ -3,3 +3,4 @@ hamlpy
 django_extensions
 werkzeug
 markdown
+bleach
