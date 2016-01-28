@@ -16,3 +16,16 @@
   -else
     %h1= orga.name
     %hr
+
+    -for meeting in orga.meeting_set.all
+      %section
+        %h2
+          -if meeting.title
+            =meeting.title
+          -else
+            No title
+
+          %small
+            =meeting.date
+
+        =meeting.html|safe
