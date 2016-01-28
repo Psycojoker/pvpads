@@ -1,6 +1,18 @@
 -extends "base.haml"
 
+-block title
+  -if orga
+    =orga.name
+    \-
+    PV PADS
+  -else
+    PV PADs
+
 -block content
   -if not orga
     %p
       You either don't have any organisation set up yet or no default organisation and no organisation that match of this domain, set up a default one or add one <a href="/admin/meetings/orga/add/">here</a>.
+
+  -else
+    %h1= orga.name
+    %hr
