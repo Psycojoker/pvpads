@@ -59,7 +59,7 @@ class Meeting(models.Model):
             import traceback
             traceback.print_exc(file=sys.stdout)
             print("Exception: %s" % e)
-            print("Error: get fetch the content of %s" % self.url)
+            print("Error: can't fetch the content of %s" % self.url)
             return
 
     def save(self, *args, **kwargs):
