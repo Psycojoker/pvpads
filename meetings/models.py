@@ -18,6 +18,9 @@ class Orga(models.Model):
         except klass.DoesNotExist:
             return None
 
+    def __unicode__(self):
+        return self.name
+
 
 class Meeting(models.Model):
     title = models.CharField(max_length=255, null=True, blank=True)
