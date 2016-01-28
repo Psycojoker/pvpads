@@ -1,3 +1,6 @@
+import os
+
+from urllib2 import urlopen
 
 from django.db import models
 
@@ -46,6 +49,19 @@ class Meeting(models.Model):
     html = models.TextField(editable=False, null=True, blank=True)
 
     last_modification = models.DateTimeField(auto_now=True)
+
+    def update_and_render_content(self):
+        try:
+            self.content = urlopen(os.path.join(self.url, "export/txt")).read()
+        except Exception:
+            print("Error: get fetch the content of %s" % self.url)
+            return
+
+    def save(self, *args, **kwargs):
+        if not self.content:
+            self.update_and_render_content()
+
+        return super(Meeting, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ["-date"]
