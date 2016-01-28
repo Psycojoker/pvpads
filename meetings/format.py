@@ -1,4 +1,9 @@
+import os
+import sys
 import markdown
+
+from urllib2 import urlopen
+from bs4 import BeautifulSoup
 
 from mediawiki_parser.preprocessor import make_parser
 from mediawiki_parser.html import make_parser as make_html_parser
@@ -20,9 +25,23 @@ def mediawiki(pad):
     return parser.parse(preprocessed_text.leaves()).value.replace("<body>", "").replace("</body>", "")
 
 
+def etherpad(pad):
+    try:
+        html = urlopen(os.path.join(pad.url, "export/html")).read()
+        soup = BeautifulSoup(html, "html5lib")
+        return ''.join(map(unicode, soup.body.contents))
+    except Exception:
+        from ipdb import set_trace; set_trace()
+        import traceback
+        traceback.print_exc(file=sys.stdout)
+        print("Error: can't fetch the html content of %s" % pad.url)
+        return ""
+
+
 FORMATTERS = {
     'markdown': ('Markdown', lambda pad: markdown.markdown(pad.content)),
     'mediawiki':  ('MediaWiki', mediawiki),
+    'etherpad':  ('EtherPad', etherpad),
 }
 
 FORMATS = ((x[0], x[1][0]) for x in FORMATTERS.items())

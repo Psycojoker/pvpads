@@ -5,3 +5,4 @@ werkzeug
 markdown
 mediawiki-parser
 bleach
+beautifulsoup4
