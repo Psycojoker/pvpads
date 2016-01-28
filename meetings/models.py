@@ -52,7 +52,7 @@ class Meeting(models.Model):
 
     last_modification = models.DateTimeField(auto_now=True)
 
-    def update_and_render_content(self):
+    def update_content(self):
         try:
             self.content = urlopen(os.path.join(self.url, "export/txt")).read()
         except Exception as e:
