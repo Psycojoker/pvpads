@@ -26,6 +26,13 @@ class Orga(models.Model):
     def __unicode__(self):
         return self.name
 
+    def save(self, *args, **kwargs):
+        # ensure that we only have one default orga
+        if self.default:
+            self.__class__.objects.filter(default=True).exclude(id=self.id).update(default=False)
+
+        return super(Orga, self).save(*args, **kwargs)
+
 
 class Meeting(models.Model):
     orga = models.ForeignKey(Orga)
