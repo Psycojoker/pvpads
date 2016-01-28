@@ -6,9 +6,6 @@ from django.db import models
 class Orga(models.Model):
     name = models.CharField(max_length=255)
     domain_name = models.CharField(max_length=255, unique=True)
-    home_html = models.TextField()
-    page_html = models.TextField()
-    css = models.TextField()
 
     default = models.BooleanField(default=False)
 
