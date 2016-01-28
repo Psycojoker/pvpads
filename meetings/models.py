@@ -43,6 +43,8 @@ class Meeting(models.Model):
     url = models.URLField()
     date = models.DateField()
 
+    format = models.CharField(max_length=255, choices=FORMATS)
+
     slug = models.SlugField(null=True, blank=True, help_text="will be deduced from the pad title if left empty")
 
     content = models.TextField(editable=False, null=True, blank=True)
