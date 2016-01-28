@@ -49,3 +49,4 @@ class Meeting(models.Model):
 
     class Meta:
         ordering = ["-date"]
+        unique_together = (('url', 'orga'))
