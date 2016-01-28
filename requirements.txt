@@ -3,4 +3,5 @@ hamlpy
 django_extensions
 werkzeug
 markdown
+mediawiki-parser
 bleach
