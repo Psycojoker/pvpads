@@ -1,8 +1,11 @@
 import os
+import sys
 
 from urllib2 import urlopen
 
 from django.db import models
+
+from .format import FORMATS, FORMATTERS
 
 
 class Orga(models.Model):
@@ -62,9 +65,20 @@ class Meeting(models.Model):
             print("Error: can't fetch the content of %s" % self.url)
             return
 
+    def render_content(self):
+        try:
+            self.html = FORMATTERS[self.format][1](self)
+        except Exception as e:
+            import traceback
+            traceback.print_exc(file=sys.stdout)
+            print("Exception: %s" % e)
+            print("Error: can't render the content of %s" % self.url)
+            return
+
     def save(self, *args, **kwargs):
         if not self.content:
             self.update_content()
+            self.render_content()
 
         if not self.title:
             maybe_title = filter(None, map(lambda x: x.strip(), self.content.split("\n")))

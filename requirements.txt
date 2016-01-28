@@ -2,3 +2,4 @@ django
 hamlpy
 django_extensions
 werkzeug
+markdown
