@@ -16,6 +16,11 @@ class Orga(models.Model):
         try:
             return klass.objects.get(domain_name=host)
         except klass.DoesNotExist:
+            pass
+
+        try:
+            return klass.objects.get(default=True)
+        except klass.DoesNotExist:
             return None
 
     def __unicode__(self):
