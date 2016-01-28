@@ -86,6 +86,12 @@ class Meeting(models.Model):
             if maybe_title:
                 self.title = maybe_title[0]
 
+        if self.id:
+            in_db = Meeting.objects.get(id=self.id)
+
+            if in_db.format != self.format:
+                self.render_content()
+
         return super(Meeting, self).save(*args, **kwargs)
 
     def __unicode__(self):
