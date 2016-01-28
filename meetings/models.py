@@ -64,7 +64,7 @@ class Meeting(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.content:
-            self.update_and_render_content()
+            self.update_content()
 
         if not self.title:
             maybe_title = filter(None, map(lambda x: x.strip(), self.content.split("\n")))
