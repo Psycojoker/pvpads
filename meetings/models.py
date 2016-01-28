@@ -39,7 +39,7 @@ class Meeting(models.Model):
 
     title = models.CharField(max_length=255, null=True, blank=True, help_text="will be the first non-empty line of the pad content if left empty")
     url = models.URLField()
-    meeting_date = models.DateField()
+    date = models.DateField()
 
     slug = models.SlugField(null=True, blank=True, help_text="will be deduced from the pad title if left empty")
 
