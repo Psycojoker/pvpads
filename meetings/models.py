@@ -5,12 +5,21 @@ from django.db import models
 
 class Orga(models.Model):
     name = models.CharField(max_length=255)
-    url = models.URLField()
+    domain_name = models.CharField(max_length=255, unique=True)
     home_html = models.TextField()
     page_html = models.TextField()
     css = models.TextField()
 
     default = models.BooleanField(default=False)
+
+    @classmethod
+    def get_orga_from_request(klass, request):
+        host = request.META["HTTP_HOST"]
+
+        try:
+            return klass.objects.get(domain_name=host)
+        except klass.DoesNotExist:
+            return None
 
 
 class Meeting(models.Model):
