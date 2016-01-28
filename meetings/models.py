@@ -61,6 +61,11 @@ class Meeting(models.Model):
         if not self.content:
             self.update_and_render_content()
 
+        if not self.title:
+            maybe_title = filter(None, map(lambda x: x.strip(), self.content.split("\n")))
+            if maybe_title:
+                self.title = maybe_title[0]
+
         return super(Meeting, self).save(*args, **kwargs)
 
     class Meta:
