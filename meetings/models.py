@@ -30,11 +30,11 @@ class Orga(models.Model):
 class Meeting(models.Model):
     orga = models.ForeignKey(Orga)
 
-    title = models.CharField(max_length=255, null=True, blank=True)
+    title = models.CharField(max_length=255, null=True, blank=True, help_text="will be the first non-empty line of the pad content if left empty")
     url = models.URLField()
     meeting_date_time = models.DateTimeField()
 
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True, help_text="will be deduced from the pad title if left empty")
 
     content = models.TextField(editable=False, null=True, blank=True)
     html = models.TextField(editable=False, null=True, blank=True)
