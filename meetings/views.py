@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, DetailView
 
-from .models import Orga
+from .models import Orga, Meeting
 
 
 def home(request):
@@ -21,3 +21,6 @@ class MeetingList(PVPADsViews, TemplateView):
     template_name = "meetings/meeting_list.haml"
 
 
+class MeetingDetail(PVPADsViews, DetailView):
+    template_name = "meetings/meeting_detail.haml"
+    model = Meeting
