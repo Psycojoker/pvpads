@@ -1,6 +1,7 @@
 body {
     margin-left: 20%;
     margin-right: 20%;
+    color: #111;
 }
 
 header {
@@ -16,7 +17,7 @@ header h1 {
 }
 
 
-section hr {
+section hr.separator {
     margin-top: 75px;
     width: 100px;
     border: 0.5px solid #ddd;
@@ -24,4 +25,35 @@ section hr {
 
 section {
     padding-bottom: 75px;
+}
+
+section h2.title {
+    margin-bottom: 25px;
+}
+
+section span.title-bar {
+    border-bottom: 1px solid #ccc;
+    width: 80%;
+    text-align: left;
+    padding-right: 140px;
+}
+
+section h2.title a {
+    text-transform: uppercase;
+    color: black;
+    text-decoration: none;
+}
+
+section h2.title a:hover {
+    text-decoration: underline;
+    text-decoration-style: dashed;
+}
+
+section h2.title small {
+    color: #888;
+    font-size: medium;
+}
+
+section .pad-content {
+    margin-left: 10px;
 }
