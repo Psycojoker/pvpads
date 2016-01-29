@@ -1,20 +1,20 @@
 -extends "base.haml"
 
 -block content
-    -for meeting in orga.meeting_set.all|slice:":10"
-      %section
-        %h2
-          %a{href: "{% url 'meeting_detail' meeting.id meeting.slug %}"}
-            -if meeting.title
-              =meeting.title
-            -else
-              No title
+  -for meeting in orga.meeting_set.all|slice:":10"
+    %section
+      %h2
+        %a{href: "{% url 'meeting_detail' meeting.id meeting.slug %}"}
+          -if meeting.title
+            =meeting.title
+          -else
+            No title
 
-          %small
-            =meeting.date
+        %small
+          =meeting.date
 
-        =meeting.html|safe
+      =meeting.html|safe
 
-    %p
-      %a{href: "{% url 'meeting_list' %}"}
-        All PVs
+  %p
+    %a{href: "{% url 'meeting_list' %}"}
+      All PVs
