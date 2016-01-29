@@ -3,7 +3,7 @@
 -block content
   -for meeting in orga.meeting_set.all|slice:":10"
     %section
-      %h2
+      %h2.title
         %a{href: "{% url 'meeting_detail' meeting.id meeting.slug %}"}
           -if meeting.title
             =meeting.title
@@ -14,6 +14,8 @@
           =meeting.date
 
       =meeting.html|safe
+
+      %hr
 
   %p
     %a{href: "{% url 'meeting_list' %}"}
