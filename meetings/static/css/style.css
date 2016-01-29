@@ -86,3 +86,32 @@ section .pad-content {
     text-align: center;
     font-size: 25px;
 }
+
+.year {
+    font-size: 40px;
+    letter-spacing: 2px;
+}
+
+.meeting-list {
+    text-align: center;
+}
+
+.meeting-list ul {
+    list-style-type: none;
+    padding-left: 0px;
+}
+
+.item + .item {
+    margin-top: 40px;
+}
+
+li.item a {
+    text-transform: uppercase;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+li.item span.date {
+    color: #999;
+    font-size: 15px;
+}
