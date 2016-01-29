@@ -1,13 +1,17 @@
 -extends "base.haml"
 
 -block content
-  %h2
-    -if meeting.title
-      =meeting.title
-    -else
-      No title
+  %section
+    %h2.title
+      %span.title-bar
+        %a.fake-a
+          -if meeting.title
+            =meeting.title
+          -else
+            No title
 
-    %small
-      =meeting.date
+        %small
+          =meeting.date
 
-  =meeting.html|safe
+    .pad-content
+      =meeting.html|safe

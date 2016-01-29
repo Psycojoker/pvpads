@@ -49,6 +49,11 @@ section h2.title a:hover {
     text-decoration-style: dashed;
 }
 
+section h2.title a.fake-a:hover {
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
 section h2.title small {
     color: #888;
     font-size: medium;
