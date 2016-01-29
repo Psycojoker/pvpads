@@ -21,7 +21,7 @@ def mediawiki(pad):
 
     parser = make_html_parser(allowed_tags, allowed_self_closing_tags, allowed_attributes, interwiki, namespaces)
 
-    preprocessed_text = preprocessor.parse(pad.content)
+    preprocessed_text = preprocessor.parse(pad.content.decode("Utf-8"))
     return parser.parse(preprocessed_text.leaves()).value.replace("<body>", "").replace("</body>", "")
 
 
