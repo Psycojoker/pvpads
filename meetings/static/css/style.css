@@ -70,7 +70,7 @@ section .pad-content {
 
 .all-pv {
     text-align: center;
-    font-size: big;
+    font-size: 25px;
 }
 
 @font-face {
