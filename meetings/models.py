@@ -47,7 +47,7 @@ class Meeting(models.Model):
     url = models.URLField()
     date = models.DateField()
 
-    format = models.CharField(max_length=255, choices=FORMATS)
+    format = models.CharField(max_length=255, choices=FORMATS, default="etherpad")
 
     slug = models.SlugField(null=True, blank=True, help_text="will be deduced from the pad title if left empty")
 
