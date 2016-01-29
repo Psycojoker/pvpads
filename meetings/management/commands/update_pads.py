@@ -13,6 +13,7 @@ class Command(BaseCommand):
             try:
                 pad.update_content()
                 pad.render_content()
+                pad.save()
             except Exception:
                 traceback.print_exc(file=sys.stdout)
                 print "^ on %s" % pad
