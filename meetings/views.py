@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import TemplateView
 
 from .models import Orga
 
@@ -10,14 +10,14 @@ def home(request):
     })
 
 
-class MeetingList(ListView):
+class PVPADsViews(object):
+    def get_context_data(self, *args, **kwargs):
+        context = super(PVPADsViews, self).get_context_data(*args, **kwargs)
+        context["orga"] = Orga.get_orga_from_request(self.request)
+        return context
+
+
+class MeetingList(PVPADsViews, TemplateView):
     template_name = "meetings/meeting_list.haml"
 
-    def get_queryset(self):
-        self.orga = Orga.get_orga_from_request(self.request)
-        return self.orga.meeting_set.all()
 
-    def get_context_data(self):
-        context = super(MeetingList, self).get_context_data()
-        context["orga"] = self.orga
-        return context
