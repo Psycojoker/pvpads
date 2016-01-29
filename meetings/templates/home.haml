@@ -14,3 +14,7 @@
             =meeting.date
 
         =meeting.html|safe
+
+    %p
+      %a{href: "{% url 'meeting_list' %}"}
+        All PVs
