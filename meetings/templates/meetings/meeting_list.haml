@@ -9,7 +9,7 @@
     %ul
     -for meeting in year.list
       %li
-        %a{href: "{% url 'meeting_detail' meeting.pk %}"}
+        %a{href: "{% url 'meeting_detail' meeting.pk meeting.slug %}"}
           =meeting.date|date:"d F"
           \-
           =meeting.title
