@@ -82,6 +82,7 @@ ALLOWED_TAGS = (
     "p",
     "pre",
     "q",
+    "s",
     "section",
     "small",
     "span",
