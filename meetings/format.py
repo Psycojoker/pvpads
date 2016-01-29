@@ -39,7 +39,7 @@ def etherpad(pad):
 
 
 FORMATTERS = {
-    'markdown': ('Markdown', lambda pad: markdown.markdown(pad.content)),
+    'markdown': ('Markdown', lambda pad: markdown.markdown(pad.content.decode("Utf-8"))),
     'mediawiki':  ('MediaWiki', mediawiki),
     'etherpad':  ('EtherPad', etherpad),
 }
