@@ -4,10 +4,11 @@
     -for meeting in orga.meeting_set.all
       %section
         %h2
-          -if meeting.title
-            =meeting.title
-          -else
-            No title
+          %a{href: "{% url 'meeting_detail' meeting.id meeting.slug %}"}
+            -if meeting.title
+              =meeting.title
+            -else
+              No title
 
           %small
             =meeting.date
