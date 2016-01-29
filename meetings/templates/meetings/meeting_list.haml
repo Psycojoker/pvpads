@@ -5,13 +5,16 @@
 
   .meeting-list
     -for year in per_years
-      %h2.year= year.grouper
+      %section
+        %h2.year= year.grouper
 
-      %ul
-        -for meeting in year.list
-          %li.item
-            %a{href: "{% url 'meeting_detail' meeting.pk meeting.slug %}"}
-              =meeting.title
-            %br
-            %span.date
-              =meeting.date|date:"d F"
+        %ul
+          -for meeting in year.list
+            %li.item
+              %a{href: "{% url 'meeting_detail' meeting.pk meeting.slug %}"}
+                =meeting.title
+              %br
+              %span.date
+                =meeting.date|date:"d F"
+
+        %hr.separator
