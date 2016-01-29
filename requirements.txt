@@ -1,5 +1,5 @@
 django
-hamlpy
+git+https://github.com/cyso/HamlPy@feature/django-1.9-compatibility
 django_extensions
 werkzeug
 markdown
