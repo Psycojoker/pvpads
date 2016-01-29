@@ -86,6 +86,9 @@ class Meeting(models.Model):
             if maybe_title:
                 self.title = maybe_title[0]
 
+        if not self.slug:
+            self.slug = filter(None, self.url.split("/"))[0]
+
         if self.id:
             in_db = Meeting.objects.get(id=self.id)
 
