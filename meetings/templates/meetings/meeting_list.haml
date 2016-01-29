@@ -1,0 +1,15 @@
+-extends "base.haml"
+
+-block content
+  -regroup orga.meeting_set.all by date.year as per_years
+
+  -for year in per_years
+    %h3= year.grouper
+
+    %ul
+    -for meeting in year.list
+      %li
+        %a{href: "{% url 'meeting_detail' meeting.pk %}"}
+          =meeting.date|date:"d F"
+          \-
+          =meeting.title
