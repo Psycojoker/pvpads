@@ -1,0 +1,5 @@
+*.pyc
+*.swp
+carnet_rose/settings_local.py
+db.sqlite3
+ve/
