@@ -31,11 +31,17 @@ def etherpad(pad):
         soup = BeautifulSoup(html, "html5lib")
         return ''.join(map(unicode, soup.body.contents))
     except Exception:
-        from ipdb import set_trace; set_trace()
-        import traceback
-        traceback.print_exc(file=sys.stdout)
-        print("Error: can't fetch the html content of %s" % pad.url)
-        return ""
+        try:
+            pad_name = pad.url.split("/")[-1]
+            pad_prefix = "/".join(pad.url.split("/")[:-1])
+            html = urlopen("%s/ep/pad/export/%s/latest?format=html" % (pad_prefix, pad_name)).read()
+            soup = BeautifulSoup(html, "html5lib")
+            return ''.join(map(unicode, soup.body.contents))
+        except Exception:
+            import traceback
+            traceback.print_exc(file=sys.stdout)
+            print("Error: can't fetch the html content of %s" % pad.url)
+            return ""
 
 
 FORMATTERS = {

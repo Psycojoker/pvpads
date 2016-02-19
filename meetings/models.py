@@ -60,11 +60,16 @@ class Meeting(models.Model):
         try:
             self.content = urlopen(os.path.join(self.url, "export/txt")).read()
         except Exception as e:
-            import traceback
-            traceback.print_exc(file=sys.stdout)
-            print("Exception: %s" % e)
-            print("Error: can't fetch the content of %s" % self.url)
-            return
+            try:
+                pad_name = self.url.split("/")[-1]
+                pad_prefix = "/".join(self.url.split("/")[:-1])
+                self.content = urlopen("%s/ep/pad/export/%s/latest?format=txt" % (pad_prefix, pad_name)).read().decode("Utf-8")
+            except Exception as e:
+                import traceback
+                traceback.print_exc(file=sys.stdout)
+                print("Exception: %s" % e)
+                print("Error: can't fetch the content of %s" % self.url)
+                return
 
     def render_content(self):
         try:
