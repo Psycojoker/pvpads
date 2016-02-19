@@ -13,7 +13,7 @@ class Orga(models.Model):
     name = models.CharField(max_length=255)
     domain_name = models.CharField(max_length=255, unique=True)
 
-    default = models.BooleanField(default=False)
+    default = models.BooleanField(default=False, help_text="if the current hostname doesn't match any organisation, this will be the used organisation")
 
     @classmethod
     def get_orga_from_request(klass, request):
