@@ -1,8 +1,6 @@
-django
-git+https://github.com/cyso/HamlPy@feature/django-1.9-compatibility
-django_extensions
-werkzeug
-markdown
-mediawiki-parser
+django>=2.1
 bleach
-beautifulsoup4
+markdown
+bs4
+mediawiki_parser
+django-extensions

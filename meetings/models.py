@@ -2,47 +2,14 @@ import os
 import sys
 import bleach
 
-from urllib2 import urlopen
+from urllib.request import urlopen
 
 from django.db import models
 
 from .format import FORMATS, FORMATTERS, ALLOWED_TAGS
 
 
-class Orga(models.Model):
-    name = models.CharField(max_length=255)
-    domain_name = models.CharField(max_length=255, unique=True)
-
-    default = models.BooleanField(default=False, help_text="if the current hostname doesn't match any organisation, this will be the used organisation")
-
-    @classmethod
-    def get_orga_from_request(klass, request):
-        host = request.META["HTTP_HOST"]
-
-        try:
-            return klass.objects.get(domain_name=host)
-        except klass.DoesNotExist:
-            pass
-
-        try:
-            return klass.objects.get(default=True)
-        except klass.DoesNotExist:
-            return None
-
-    def __unicode__(self):
-        return self.name
-
-    def save(self, *args, **kwargs):
-        # ensure that we only have one default orga
-        if self.default:
-            self.__class__.objects.filter(default=True).exclude(id=self.id).update(default=False)
-
-        return super(Orga, self).save(*args, **kwargs)
-
-
 class Meeting(models.Model):
-    orga = models.ForeignKey(Orga)
-
     title = models.CharField(max_length=255, null=True, blank=True, help_text="will be the first non-empty line of the pad content if left empty")
     url = models.URLField()
     date = models.DateField()
@@ -107,4 +74,3 @@ class Meeting(models.Model):
 
     class Meta:
         ordering = ["-date"]
-        unique_together = (('url', 'orga'))

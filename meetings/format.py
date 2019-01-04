@@ -2,7 +2,7 @@ import os
 import sys
 import markdown
 
-from urllib2 import urlopen
+from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
 from mediawiki_parser.preprocessor import make_parser
